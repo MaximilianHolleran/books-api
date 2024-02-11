@@ -52,6 +52,18 @@ books.get('/', (req, res) => {
         })
 })
 
+// POST
+books.post('/', (req, res) => {
+    Book.create(req.body)
+      .then((newBook) => {
+        res.json(newBook)
+      })
+      .catch( err => {
+        console.log('err', err)
+        res.json('error404')
+      })
+  })
+
 //show route
 books.get('/:id', (req, res) => {
     Book.findById(req.params.id)
